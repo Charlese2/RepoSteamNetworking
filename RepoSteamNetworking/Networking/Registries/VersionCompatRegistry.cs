@@ -12,7 +12,7 @@ namespace RepoSteamNetworking.Networking.Registries;
 internal static class VersionCompatRegistry
 {
     private static readonly Dictionary<string, RSNVersionCompatibilityAttribute> ModCompatInfo = new();
-    private static readonly Dictionary<string, System.Version> ModVersion = new();
+    private static readonly Dictionary<string, SemanticVersioning.Version> ModVersion = new();
     private static bool _assembliesRegistered;
     
     public static void InitRegistry()
@@ -20,13 +20,13 @@ internal static class VersionCompatRegistry
         RegisterAssemblies();
     }
 
-    public static void RegisterMod(string modGuid, System.Version modVersion, RSNVersionCompatibilityAttribute compatAttr)
+    public static void RegisterMod(string modGuid, SemanticVersioning.Version modVersion, RSNVersionCompatibilityAttribute compatAttr)
     {
         ModCompatInfo[modGuid] = compatAttr;
         ModVersion[modGuid] = modVersion;
     }
 
-    public static bool IsCompatible(string modGuid, System.Version otherModVersion, out System.Version? serverModVersion, out VersionCompatibility serverCompatibility)
+    public static bool IsCompatible(string modGuid, SemanticVersioning.Version otherModVersion, out SemanticVersioning.Version? serverModVersion, out VersionCompatibility serverCompatibility)
     {
         serverModVersion = null;
         serverCompatibility = default;
@@ -57,7 +57,7 @@ internal static class VersionCompatRegistry
         };
     }
 
-    public static bool TryGetVersion(string modGuid, out System.Version version) =>
+    public static bool TryGetVersion(string modGuid, out SemanticVersioning.Version version) =>
         ModVersion.TryGetValue(modGuid, out version);
 
     public static bool TryGetCompatInfo(string modGuid, out RSNVersionCompatibilityAttribute compatInfo) =>

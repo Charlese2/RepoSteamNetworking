@@ -7,7 +7,6 @@ using UnityEngine.UI.CoroutineTween;
 
 namespace RepoSteamNetworking.Networking.Unity;
 
-[RequireComponent(typeof(Transform))]
 [DisallowMultipleComponent]
 public partial class NetworkTransform : MonoBehaviour
 {

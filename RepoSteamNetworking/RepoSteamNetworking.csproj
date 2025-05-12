@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>netstandard2.1</TargetFramework>
+        <TargetFramework>net6.0</TargetFramework>
         <LangVersion>preview</LangVersion>
         <Nullable>enable</Nullable>
         <Authors>Rune580</Authors>
@@ -46,6 +46,7 @@
 
     <!-- Project Nuget Packages -->
     <ItemGroup>
+        <PackageReference Include="BepInEx.Unity.IL2CPP" Version="6.0.0-be.735" />
         <PackageReference Include="MinVer" Version="6.0.0">
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
             <PrivateAssets>all</PrivateAssets>
@@ -54,16 +55,18 @@
             <PrivateAssets>all</PrivateAssets>
             <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
         </PackageReference>
-        <PackageReference Include="BepInEx.AssemblyPublicizer.MSBuild" Version="0.4.3">
-            <PrivateAssets>all</PrivateAssets>
-            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-        </PackageReference>
         <PackageReference Include="BepInEx.PluginInfoProps" Version="2.1" />
-        <PackageReference Include="BepInEx.Core" Version="5.*" />
-        <PackageReference Include="UnityEngine.Modules" Version="2022.3.21" />
-        <PackageReference Include="R.E.P.O.GameLibs.Steam" Version="0.1.2-ngd.0" Publicize="true" />
     </ItemGroup>
-    
+
+    <ItemGroup>
+      <Reference Include="$(DummyDllDirectory)*.dll">
+        <Private>false</Private>
+      </Reference>
+      <Reference Include="$(OdinSerilizerDirectory)Sirenix.*.dll">
+        <Private>false</Private>
+      </Reference>
+    </ItemGroup>
+
     <!-- Find Custom Formatters -->
     <ItemGroup>
         <CustomFormatterFiles Include="Odin/Formatters/*.cs" Visibile="false" />

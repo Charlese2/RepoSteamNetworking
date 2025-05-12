@@ -11,7 +11,7 @@ internal class HandshakeAuthConnectionPacket : NetworkPacket<HandshakeAuthConnec
     public SteamId PlayerId { get; private set; }
     public string AuthKey { get; private set; } = string.Empty;
 
-    internal void SetData(Lobby lobby, string clientKey)
+    internal void SetData(Steamworks.Data.Lobby lobby, string clientKey)
     {
         LobbyId = lobby.Id;
         PlayerId = SteamClient.SteamId;

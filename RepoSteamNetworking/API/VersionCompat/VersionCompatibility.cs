@@ -37,7 +37,7 @@ public enum VersionCompatibility
 
 public static class VersionCompatibilityExtensions
 {
-    public static string CreateVersionRequirementString(this VersionCompatibility compatibility, System.Version version)
+    public static string CreateVersionRequirementString(this VersionCompatibility compatibility, SemanticVersioning.Version version)
     {
         return compatibility switch
         {

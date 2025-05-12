@@ -13,7 +13,7 @@ namespace RepoSteamNetworking.Networking;
 
 internal class RepoNetworkConnectionManager : ConnectionManager
 {
-    private Lobby _currentLobby;
+    private Steamworks.Data.Lobby _currentLobby;
     internal bool Verified;
     
     public RepoNetworkConnectionManager()
@@ -82,7 +82,7 @@ internal class RepoNetworkConnectionManager : ConnectionManager
         RepoSteamNetwork.OnClientMessageReceived(bytes);
     }
 
-    public void SetLobby(Lobby lobby)
+    public void SetLobby(Steamworks.Data.Lobby lobby)
     {
         _currentLobby = lobby;
     }

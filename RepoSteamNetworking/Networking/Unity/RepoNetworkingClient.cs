@@ -13,14 +13,14 @@ public class RepoNetworkingClient : MonoBehaviour
     public static RepoNetworkingClient Instance => _instance;
     
     private bool _clientActive;
-    internal Lobby CurrentLobby { get; private set; }
+    internal Steamworks.Data.Lobby CurrentLobby { get; private set; }
     private RepoNetworkConnectionManager? _connectionManager;
     
     internal bool ClientActive => _instance is not null && _clientActive;
     
     internal static void CreateSingleton(GameObject parent)
     {
-        if (_instance is not null)
+        if (_instance != null)
         {
             Logging.Warn($"{nameof(RepoNetworkingClient)} already initialized!");
             return;
@@ -52,7 +52,7 @@ public class RepoNetworkingClient : MonoBehaviour
         _connectionManager.Receive();
     }
 
-    public void ConnectToServer(Lobby lobby)
+    public void ConnectToServer(Steamworks.Data.Lobby lobby)
     {
         CurrentLobby = lobby;
         _connectionManager = SteamNetworkingSockets.ConnectRelay<RepoNetworkConnectionManager>(lobby.Owner.Id);

@@ -1,6 +1,6 @@
 using System.Linq;
-using BepInEx.Bootstrap;
 using RepoSteamNetworking.Networking.Data;
+using BepInEx.Unity.IL2CPP;
 
 namespace RepoSteamNetworking.Networking.Registries;
 
@@ -14,7 +14,7 @@ internal static class ModNetworkGuidRegistry
         if (_initialized)
             return;
 
-        var modGuids = Chainloader.PluginInfos.Keys.ToArray();
+        var modGuids = IL2CPPChainloader.Instance.Plugins.Keys.ToArray();
         Palette = new ModNetworkGuidPalette(modGuids);
         
         _initialized = true;

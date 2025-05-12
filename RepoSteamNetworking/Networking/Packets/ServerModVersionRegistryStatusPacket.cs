@@ -11,7 +11,7 @@ internal class ServerModVersionRegistryStatusPacket : NetworkPacket<ServerModVer
 
     public ServerModRegistryEntry[] ModIncompatibilities { get; private set; } = [];
     
-    public void AddIncompatible(string modGuid, System.Version serverModVersion, VersionCompatibility compatibility)
+    public void AddIncompatible(string modGuid, SemanticVersioning.Version serverModVersion, VersionCompatibility compatibility)
     {
         _registryEntries.Add(new ServerModRegistryEntry
         {
@@ -36,7 +36,7 @@ internal class ServerModVersionRegistryStatusPacket : NetworkPacket<ServerModVer
     internal struct ServerModRegistryEntry
     {
         public string Guid;
-        public System.Version Version;
+        public SemanticVersioning.Version Version;
         public VersionCompatibility Compatibility;
     }
 }

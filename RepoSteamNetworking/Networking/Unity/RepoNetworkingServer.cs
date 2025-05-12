@@ -14,14 +14,14 @@ public class RepoNetworkingServer : MonoBehaviour
     public static RepoNetworkingServer Instance => _instance;
 
     private bool _serverActive;
-    internal Lobby CurrentLobby { get; private set; }
+    internal Steamworks.Data.Lobby CurrentLobby { get; private set; }
     internal RepoNetworkSocketManager? SocketManager { get; private set; }
     
-    internal bool ServerActive => _instance is not null && _serverActive;
+    internal bool ServerActive => _instance != null && _serverActive;
     
     internal static void CreateSingleton(GameObject parent)
     {
-        if (_instance is not null)
+        if (_instance != null)
         {
             Logging.Warn($"{nameof(RepoNetworkingServer)} already initialized!");
             return;
@@ -53,7 +53,7 @@ public class RepoNetworkingServer : MonoBehaviour
         SocketManager.Receive();
     }
 
-    public void StartSocketServer(Lobby lobby)
+    public void StartSocketServer(Steamworks.Data.Lobby lobby)
     {
         CurrentLobby = lobby;
         SocketManager = SteamNetworkingSockets.CreateRelaySocket<RepoNetworkSocketManager>();

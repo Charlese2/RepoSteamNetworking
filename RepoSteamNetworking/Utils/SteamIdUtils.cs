@@ -13,9 +13,24 @@ internal static class SteamIdUtils
     {
         if (CachedSteamIds.TryGetValue(steamId, out var cachedName))
             return cachedName;
+
+        if (!steamId.IsValid)
+            return "Invalid SteamId";
         
         var lobby = RepoSteamNetwork.GetCurrentLobby();
-        SteamFriends.RequestUserInformation(steamId);
+
+        if (!lobby.Members.Any(friend => friend.Id == steamId))
+        {
+            Logging.Warn($"Requesting name from non lobby member {steamId}");
+            return "No Member for steamId";
+        }
+
+        if (SteamFriends.RequestUserInformation(steamId))
+        {
+            var tempName = $"SteamId: {steamId.Value}";
+            CachedSteamIds[steamId] = tempName;
+            return tempName;
+        }
 
         // Use NameHistory so we don't accidentally dox people who use nicknames to refer to their friends real names.
         var names = lobby.Members.Where(friend => friend.Id == steamId)
@@ -32,5 +47,10 @@ internal static class SteamIdUtils
         CachedSteamIds[steamId] = name;
         
         return name;
+    }
+
+    internal static void OnPersonaStateChange(Friend friend)
+    {
+        CachedSteamIds[friend.Id] = friend.NameHistory.First();
     }
 }

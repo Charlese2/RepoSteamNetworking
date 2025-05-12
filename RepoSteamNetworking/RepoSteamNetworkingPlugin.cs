@@ -7,7 +7,11 @@ using RepoSteamNetworking.Networking;
 using RepoSteamNetworking.Networking.NetworkedProperties;
 using RepoSteamNetworking.Networking.Packets;
 using RepoSteamNetworking.Utils;
-#if DEBUG
+using BepInEx.Unity.IL2CPP;
+using Il2CppInterop.Runtime.Injection;
+using RepoSteamNetworking.Networking.Unity;
+using RepoSteamNetworking.API.Unity;
+#if false
 using System;
 using System.IO;
 using BepInEx.Bootstrap;
@@ -19,21 +23,27 @@ namespace RepoSteamNetworking;
 
 [RSNVersionCompatibility(VersionCompatibility.Any, optional: false)]
 [BepInPlugin(MyPluginInfo.PLUGIN_GUID, MyPluginInfo.PLUGIN_NAME, MyPluginInfo.PLUGIN_VERSION)]
-public class RepoSteamNetworkingPlugin : BaseUnityPlugin
+public class RepoSteamNetworkingPlugin : BasePlugin
 {
-#if DEBUG
+#if false
     internal static AssetBundleReference TestBundle;
 #endif
-    
-    private void Awake()
+
+    public override void Load()
     {
-        Logging.SetLogSource(Logger);
+        Logging.SetLogSource(Log);
         
         Harmony.CreateAndPatchAll(Assembly.GetExecutingAssembly(), MyPluginInfo.PLUGIN_GUID);
         
         RegisterPackets();
 
-#if DEBUG
+        ClassInjector.RegisterTypeInIl2Cpp<RepoSteamNetworkManager>();
+        ClassInjector.RegisterTypeInIl2Cpp<RepoNetworkingServer>();
+        ClassInjector.RegisterTypeInIl2Cpp<RepoNetworkingClient>();
+        ClassInjector.RegisterTypeInIl2Cpp<RepoSteamNetworkIdentity>();
+        ClassInjector.RegisterTypeInIl2Cpp<ClientAuthHandshakeOneShot>();
+
+#if false
         DoAssetBundleStuff();
 #endif
     }
@@ -66,7 +76,7 @@ public class RepoSteamNetworkingPlugin : BaseUnityPlugin
         RepoSteamNetwork.AddCallback<InstantiateNetworkedPrefabPacket>(PacketHandler.OnInstantiateNetworkedPrefabPacketReceived);
     }
 
-#if DEBUG
+#if false
     private void DoAssetBundleStuff()
     {
         if (!Chainloader.PluginInfos.TryGetValue(MyPluginInfo.PLUGIN_GUID, out var pluginInfo))

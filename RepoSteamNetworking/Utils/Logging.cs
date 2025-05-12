@@ -22,7 +22,7 @@ internal static class Logging
     {
         if (_logSource is null)
         {
-            UnityEngine.Debug.LogError($"[{MyPluginInfo.PLUGIN_NAME}] [Error] {msg}");
+            throw new System.Exception("_logSource is null");
         }
         else
         {
@@ -34,7 +34,7 @@ internal static class Logging
     {
         if (_logSource is null)
         {
-            UnityEngine.Debug.LogWarning($"[{MyPluginInfo.PLUGIN_NAME}] [Warning] {msg}");
+            throw new System.Exception("_logSource is null");
         }
         else
         {
@@ -46,7 +46,7 @@ internal static class Logging
     {
         if (_logSource is null)
         {
-            UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}] [Info] {msg}");
+            throw new System.Exception("_logSource is null");
         }
         else
         {
@@ -58,7 +58,7 @@ internal static class Logging
     {
         if (_logSource is null)
         {
-            UnityEngine.Debug.Log($"[{MyPluginInfo.PLUGIN_NAME}] [Debug] {msg}");
+            throw new System.Exception("_logSource is null");
         }
         else
         {

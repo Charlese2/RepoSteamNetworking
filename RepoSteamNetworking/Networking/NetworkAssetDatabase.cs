@@ -28,41 +28,18 @@ internal static class NetworkAssetDatabase
     public static T? LoadAsset<T>(PrefabReference prefabRef)
         where T : Object
     {
-        if (!AssetBundles.TryGetValue(prefabRef.BundleReference, out var networkBundle))
-        {
-            Logging.Error($"Failed to find AssetBundle with reference: {prefabRef.BundleReference}");
-            return null;
-        }
-
-        if (networkBundle.Managed) // TODO
-            return null;
-
-        return networkBundle.Bundle.LoadAsset<T>(prefabRef.assetPath);
+        throw new System.NotImplementedException();
     }
 
     public static AssetBundleRequest? LoadAssetAsync<T>(PrefabReference prefabRef)
         where T : Object
     {
-        if (!AssetBundles.TryGetValue(prefabRef.BundleReference, out var networkBundle))
-        {
-            Logging.Error($"Failed to find AssetBundle with reference: {prefabRef.BundleReference}");
-            return null;
-        }
-
-        if (networkBundle.Managed) // TODO
-            return null;
-
-        return networkBundle.Bundle.LoadAssetAsync<T>(prefabRef.assetPath);
+        throw new System.NotImplementedException();
     }
 
     public static IEnumerable<PrefabReference> GetAllAssets(AssetBundleReference bundleRef)
     {
-        var networkBundle = AssetBundles[bundleRef];
-        var bundle = networkBundle.Bundle;
-
-        var assetPaths = bundle.GetAllAssetNames();
-
-        return assetPaths.Select(path => bundleRef.GetPrefabReference(path));
+        throw new System.NotImplementedException();
     }
 
     private struct NetworkAssetBundle

@@ -7,7 +7,7 @@ public class BitFlagsFormatter : MinimalBaseFormatter<BitFlags>
 {
     private static readonly Serializer<byte> ByteSerializer = Serializer.Get<byte>();
     
-    public override void Read(ref BitFlags value, IDataReader reader)
+    protected override void Read(ref BitFlags value, IDataReader reader)
     {
         var length = ByteSerializer.ReadValue(reader);
         
@@ -18,7 +18,7 @@ public class BitFlagsFormatter : MinimalBaseFormatter<BitFlags>
         value.SetFromBytes(bytes);
     }
 
-    public override void Write(ref BitFlags value, IDataWriter writer)
+    protected override void Write(ref BitFlags value, IDataWriter writer)
     {
         var bytes = value.AsByteArray();
         

@@ -6,7 +6,7 @@ namespace RepoSteamNetworking.Networking.Packets;
 
 internal class ClientModVersionRegistryPacket : NetworkPacket<ClientModVersionRegistryPacket>
 {
-    public Dictionary<string, System.Version> ModVersions { get; set; } = new();
+    public Dictionary<string, SemanticVersioning.Version> ModVersions { get; set; } = new();
     
     protected override void WriteData(SocketMessage socketMessage)
     {
@@ -15,6 +15,6 @@ internal class ClientModVersionRegistryPacket : NetworkPacket<ClientModVersionRe
 
     protected override void ReadData(SocketMessage socketMessage)
     {
-        ModVersions = socketMessage.Read<Dictionary<string, System.Version>>();
+        ModVersions = socketMessage.Read<Dictionary<string, SemanticVersioning.Version>>();
     }
 }

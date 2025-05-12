@@ -11,6 +11,7 @@ using RepoSteamNetworking.Networking.Registries;
 using RepoSteamNetworking.Networking.Serialization;
 using RepoSteamNetworking.Networking.Unity;
 using RepoSteamNetworking.Utils;
+using BepInEx.Unity.IL2CPP;
 using Steamworks;
 using Steamworks.Data;
 using UnityEngine;
@@ -124,7 +125,7 @@ public static class RepoSteamNetwork
         NetworkPacketRegistry.InvokeCallbacks(packet);
     }
 
-    public static Lobby GetCurrentLobby()
+    public static Steamworks.Data.Lobby GetCurrentLobby()
     {
         if (RepoNetworkingServer.Instance.ServerActive)
             return RepoNetworkingServer.Instance.CurrentLobby;
@@ -152,12 +153,12 @@ public static class RepoSteamNetwork
         NetworkPacketRegistry.RemoveCallback<TPacket>(callbackHandler);
     }
 
-    public static void SetVersionCompatibility(string modGuid, System.Version modVersion, VersionCompatibility compatibility, bool optional = false)
+    public static void SetVersionCompatibility(string modGuid, SemanticVersioning.Version modVersion, VersionCompatibility compatibility, bool optional = false)
     {
         VersionCompatRegistry.RegisterMod(modGuid, modVersion, new RSNVersionCompatibilityAttribute(compatibility, optional));
     }
 
-    public static void SetVersionCompatibility(VersionCompatibility compatibility, bool optional = false, BaseUnityPlugin? plugin = null)
+    public static void SetVersionCompatibility(VersionCompatibility compatibility, bool optional = false, BasePlugin? plugin = null)
     {
         BepInPlugin pluginInfo;
         
@@ -278,24 +279,6 @@ public static class RepoSteamNetwork
         {
             Logging.Warn("Only the host may instantiate prefabs!");
             return;
-        }
-        
-        if (prefabRef.HasModifications)
-        {
-            var prefab = NetworkAssetDatabase.LoadAsset<GameObject>(prefabRef);
-            if (prefab is null)
-            {
-                Logging.Error($"Failed to instantiate network prefab {prefabRef.ToString()}! Verify the asset path and make sure you registered the AssetBundle!");
-                return;
-            }
-            var wasPrefabActive = prefab.activeSelf;
-            prefab.SetActive(false);
-            
-            var modifiedPrefab = Object.Instantiate(prefab);
-            prefab.SetActive(wasPrefabActive);
-            
-            prefabRef.CreateModifications(modifiedPrefab);
-            Object.DestroyImmediate(modifiedPrefab);
         }
         
         var networkId = RepoSteamNetworkManager.Instance.NewNetworkId;

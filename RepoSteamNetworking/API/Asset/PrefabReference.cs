@@ -46,13 +46,12 @@ public struct PrefabReference
     public T? LoadAsset<T>()
         where T : Object
     {
-        return NetworkAssetDatabase.LoadAsset<T>(this);
+        throw new NotImplementedException();
     }
-
     public AssetBundleRequest? LoadAssetAsync<T>()
         where T : Object
     {
-        return NetworkAssetDatabase.LoadAssetAsync<T>(this);
+        throw new NotImplementedException();
     }
 
     /// <summary>

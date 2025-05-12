@@ -9,7 +9,7 @@ public class NetworkTransformDeltaFormatter : MinimalBaseFormatter<NetworkTransf
     private static readonly Serializer<BitFlags> BitFlagsSerializer = Serializer.Get<BitFlags>();
     private static readonly Serializer<float> FloatSerializer = Serializer.Get<float>();
 
-    public override void Read(ref NetworkTransformDelta value, IDataReader reader)
+    protected override void Read(ref NetworkTransformDelta value, IDataReader reader)
     {
         var flags = BitFlagsSerializer.ReadValue(reader);
 
@@ -35,7 +35,7 @@ public class NetworkTransformDeltaFormatter : MinimalBaseFormatter<NetworkTransf
             value.ScaleZ = FloatSerializer.ReadValue(reader);
     }
 
-    public override void Write(ref NetworkTransformDelta value, IDataWriter writer)
+    protected override void Write(ref NetworkTransformDelta value, IDataWriter writer)
     {
         var flags = new BitFlags
         {
