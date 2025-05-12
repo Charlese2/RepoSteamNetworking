@@ -67,7 +67,7 @@
     <!-- Find Custom Formatters -->
     <ItemGroup>
         <CustomFormatterFiles Include="Odin/Formatters/*.cs" Visibile="false" />
-        <CustomFormatters Include="@(CustomFormatterFiles->'RepoSteamNetworking.%(Identity)'->Replace('.cs', '')->Replace('/', '.'))" Visible="false" />
+        <CustomFormatters Include="@(CustomFormatterFiles->'RepoSteamNetworking.%(Identity)'->Replace('.cs', '')->Replace('/', '.')->Replace('\', '.'))" Visible="false" />
     </ItemGroup>
     
     <!-- Register Custom Formatters -->
