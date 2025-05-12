@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RepoSteamNetworking.Networking.Unity;
 
-[DisallowMultipleComponent]
 public class NetworkRigidbody : MonoBehaviour
 {
     private Rigidbody _rigidbody = null!;

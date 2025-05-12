@@ -3,7 +3,6 @@
     <PropertyGroup>
         <TargetFramework>net6.0</TargetFramework>
         <LangVersion>preview</LangVersion>
-        <Nullable>enable</Nullable>
         <Authors>Rune580</Authors>
         <Product>RepoSteamNetworking</Product>
         <BepInExPluginGuid>com.rune580.reposteamnetworking</BepInExPluginGuid>
@@ -59,7 +58,8 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Reference Include="$(DummyDllDirectory)*.dll">
+
+      <Reference Include="$(InteropDirectory)*.dll">
         <Private>false</Private>
       </Reference>
       <Reference Include="$(OdinSerilizerDirectory)Sirenix.*.dll">
@@ -70,7 +70,8 @@
     <!-- Find Custom Formatters -->
     <ItemGroup>
         <CustomFormatterFiles Include="Odin/Formatters/*.cs" Visibile="false" />
-        <CustomFormatters Include="@(CustomFormatterFiles->'RepoSteamNetworking.%(Identity)'->Replace('.cs', '')->Replace('/', '.')->Replace('\', '.'))" Visible="false" />
+        <None Remove="RepoSteamNetworking.csproj.user.template" />
+        <CustomFormatters Include="@(CustomFormatterFiles-&gt;'RepoSteamNetworking.%(Identity)'-&gt;Replace('.cs', '')-&gt;Replace('/', '.')-&gt;Replace('\', '.'))" Visible="false" />
     </ItemGroup>
     
     <!-- Register Custom Formatters -->

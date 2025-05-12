@@ -10,7 +10,6 @@ public class GameObjectAddedModification : BasePrefabModification
     public string Name;
     public string ParentPrefabPath;
     
-    [SerializeField]
     private BasePrefabModification[] Modifications;
 
     public GameObjectAddedModification()

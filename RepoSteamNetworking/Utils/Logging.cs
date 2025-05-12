@@ -6,7 +6,7 @@ namespace RepoSteamNetworking.Utils;
 
 internal static class Logging
 {
-    private static ManualLogSource? _logSource;
+    private static ManualLogSource _logSource;
 
     internal static void SetLogSource(ManualLogSource logSource)
     {

@@ -6,7 +6,6 @@ using UnityEngine;
 
 namespace RepoSteamNetworking.API.Unity;
 
-[DisallowMultipleComponent]
 public class RepoSteamNetworkIdentity : MonoBehaviour
 {
     /// <summary>

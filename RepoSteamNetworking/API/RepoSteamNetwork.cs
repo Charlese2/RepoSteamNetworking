@@ -158,7 +158,7 @@ public static class RepoSteamNetwork
         VersionCompatRegistry.RegisterMod(modGuid, modVersion, new RSNVersionCompatibilityAttribute(compatibility, optional));
     }
 
-    public static void SetVersionCompatibility(VersionCompatibility compatibility, bool optional = false, BasePlugin? plugin = null)
+    public static void SetVersionCompatibility(VersionCompatibility compatibility, bool optional = false, BasePlugin plugin = null)
     {
         BepInPlugin pluginInfo;
         
@@ -167,7 +167,7 @@ public static class RepoSteamNetwork
             var assembly = Assembly.GetCallingAssembly();
 
             var plugins = assembly.GetLoadableTypes()
-                .SelectMany(type => type.GetCustomAttributes<BepInPlugin>())
+                .Select(type => type.GetCustomAttributes<BepInPlugin>().Single())
                 .ToArray();
 
             if (plugins.Length != 1)
@@ -272,7 +272,7 @@ public static class RepoSteamNetwork
     
     public static void InstantiatePrefab(PrefabReference prefab, Transform target, Quaternion rotation) => InstantiatePrefab(prefab, target, Vector3.zero, rotation);
     
-    public static void InstantiatePrefab(PrefabReference prefabRef, Transform? target, Vector3 position,
+    public static void InstantiatePrefab(PrefabReference prefabRef, Transform target, Vector3 position,
         Quaternion rotation)
     {
         if (!IsServer && !IsSinglePlayer)

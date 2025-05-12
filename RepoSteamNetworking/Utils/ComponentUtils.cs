@@ -19,7 +19,7 @@ internal static class ComponentUtils
 
     public static Component GetOrAddComponent(this GameObject gameObject, string assemblyQualifiedName)
     {
-        var componentType = Type.GetType(assemblyQualifiedName);
+        var componentType = Il2CppSystem.Type.GetType(assemblyQualifiedName);
         
         var component = gameObject.GetComponent(componentType);
         return !component ? gameObject.AddComponent(componentType) : component;
@@ -30,7 +30,7 @@ internal static class ComponentUtils
         return transform.gameObject.GetOrAddComponent(assemblyQualifiedName);
     }
 
-    public static void SetFieldValues(this Component component, Dictionary<string, object?> values)
+    public static void SetFieldValues(this Component component, Dictionary<string, object> values)
     {
         var componentType = component.GetType();
         

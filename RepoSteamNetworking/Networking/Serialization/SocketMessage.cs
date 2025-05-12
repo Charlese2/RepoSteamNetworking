@@ -8,8 +8,8 @@ namespace RepoSteamNetworking.Networking.Serialization;
 public class SocketMessage : IDisposable
 {
     private readonly MemoryStream _buffer;
-    private IDataWriter? _writer;
-    private IDataReader? _reader;
+    private IDataWriter _writer;
+    private IDataReader _reader;
     
     private IDataWriter Writer
     {

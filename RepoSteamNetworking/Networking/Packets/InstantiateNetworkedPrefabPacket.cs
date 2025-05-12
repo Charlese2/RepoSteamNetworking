@@ -17,7 +17,7 @@ internal class InstantiateNetworkedPrefabPacket : NetworkPacket<InstantiateNetwo
     public Vector3 Position { get; set; }
     public Quaternion Rotation { get; set; }
     
-    public void SetTargetTransform(Transform? target)
+    public void SetTargetTransform(Transform target)
     {
         HasTarget = false;
 

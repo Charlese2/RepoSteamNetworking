@@ -9,12 +9,12 @@ namespace RepoSteamNetworking.Networking.Unity;
 
 public class RepoNetworkingClient : MonoBehaviour
 {
-    private static RepoNetworkingClient? _instance;
+    private static RepoNetworkingClient _instance;
     public static RepoNetworkingClient Instance => _instance;
     
     private bool _clientActive;
     internal Steamworks.Data.Lobby CurrentLobby { get; private set; }
-    private RepoNetworkConnectionManager? _connectionManager;
+    private RepoNetworkConnectionManager _connectionManager;
     
     internal bool ClientActive => _instance is not null && _clientActive;
     

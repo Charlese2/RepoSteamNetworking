@@ -10,7 +10,7 @@ internal class PrefabComponentState
 {
     public readonly string FullTypeName;
     public readonly FieldInfo[] SerializableFields;
-    public readonly Dictionary<string, object?> Values = new();
+    public readonly Dictionary<string, object> Values = new();
     public uint ComponentIndex;
 
     public PrefabComponentState(Component component)
@@ -33,9 +33,9 @@ internal class PrefabComponentState
 
     public bool AreFieldsEqual(PrefabComponentState other) => GetChangedValues(other).Count == 0;
 
-    public Dictionary<string, object?> GetChangedValues(PrefabComponentState other)
+    public Dictionary<string, object> GetChangedValues(PrefabComponentState other)
     {
-        var diff = new Dictionary<string, object?>();
+        var diff = new Dictionary<string, object>();
         
         var otherValueFields = other.Values.Keys.ToHashSet();
         foreach (var (fieldName, value) in Values)

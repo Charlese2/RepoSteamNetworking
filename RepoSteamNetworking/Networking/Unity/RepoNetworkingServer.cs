@@ -10,12 +10,12 @@ namespace RepoSteamNetworking.Networking.Unity;
 
 public class RepoNetworkingServer : MonoBehaviour
 {
-    private static RepoNetworkingServer? _instance;
+    private static RepoNetworkingServer _instance;
     public static RepoNetworkingServer Instance => _instance;
 
     private bool _serverActive;
     internal Steamworks.Data.Lobby CurrentLobby { get; private set; }
-    internal RepoNetworkSocketManager? SocketManager { get; private set; }
+    internal RepoNetworkSocketManager SocketManager { get; private set; }
     
     internal bool ServerActive => _instance != null && _serverActive;
     

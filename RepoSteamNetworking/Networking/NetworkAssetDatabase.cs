@@ -25,13 +25,13 @@ internal static class NetworkAssetDatabase
         return bundleRef;
     }
 
-    public static T? LoadAsset<T>(PrefabReference prefabRef)
+    public static T LoadAsset<T>(PrefabReference prefabRef)
         where T : Object
     {
         throw new System.NotImplementedException();
     }
 
-    public static AssetBundleRequest? LoadAssetAsync<T>(PrefabReference prefabRef)
+    public static AssetBundleRequest LoadAssetAsync<T>(PrefabReference prefabRef)
         where T : Object
     {
         throw new System.NotImplementedException();

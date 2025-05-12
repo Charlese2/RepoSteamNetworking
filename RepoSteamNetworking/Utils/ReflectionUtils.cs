@@ -20,10 +20,10 @@ internal static class ReflectionUtils
         }
     }
 
-    public static BepInPlugin? GetPluginInfoFromAssembly(this Assembly assembly)
+    public static BepInPlugin GetPluginInfoFromAssembly(this Assembly assembly)
     {
         var pluginInfo = assembly.GetLoadableTypes()
-            .SelectMany(type => type.GetCustomAttributes<BepInPlugin>())
+            .Select(type => type.GetCustomAttributes<BepInPlugin>().Single())
             .FirstOrDefault();
         
         return pluginInfo;

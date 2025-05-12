@@ -186,7 +186,7 @@ public class SteamUserConnection : IEquatable<SteamUserConnection>
         RepoSteamNetwork.SendPacket(packet, NetworkDestination.PacketTarget);
     }
 
-    public bool Equals(SteamUserConnection? other)
+    public bool Equals(SteamUserConnection other)
     {
         if (other is null)
             return false;
@@ -195,7 +195,7 @@ public class SteamUserConnection : IEquatable<SteamUserConnection>
         return ConnectionId.Equals(other.ConnectionId);
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         if (obj is null)
             return false;
@@ -211,12 +211,12 @@ public class SteamUserConnection : IEquatable<SteamUserConnection>
         return ConnectionId.GetHashCode();
     }
 
-    public static bool operator ==(SteamUserConnection? left, SteamUserConnection? right)
+    public static bool operator ==(SteamUserConnection left, SteamUserConnection right)
     {
         return Equals(left, right);
     }
 
-    public static bool operator !=(SteamUserConnection? left, SteamUserConnection? right)
+    public static bool operator !=(SteamUserConnection left, SteamUserConnection right)
     {
         return !Equals(left, right);
     }

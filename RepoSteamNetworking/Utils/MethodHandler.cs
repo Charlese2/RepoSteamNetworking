@@ -6,9 +6,9 @@ namespace RepoSteamNetworking.Utils;
 internal class MethodHandler : IEquatable<MethodHandler>
 {
     private readonly MethodInfo _method;
-    private readonly object? _target;
+    private readonly object _target;
 
-    private MethodHandler(MethodInfo method, object? target = null)
+    private MethodHandler(MethodInfo method, object target = null)
     {
         _method = method;
         _target = target;
@@ -29,7 +29,7 @@ internal class MethodHandler : IEquatable<MethodHandler>
 
     #region Equality
 
-    public bool Equals(MethodHandler? other)
+    public bool Equals(MethodHandler other)
     {
         if (other is null)
             return false;
@@ -57,7 +57,7 @@ internal class MethodHandler : IEquatable<MethodHandler>
         return true;
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         if (obj is null)
             return false;
@@ -73,12 +73,12 @@ internal class MethodHandler : IEquatable<MethodHandler>
         return HashCode.Combine(_method, _target);
     }
 
-    public static bool operator ==(MethodHandler? left, MethodHandler? right)
+    public static bool operator ==(MethodHandler left, MethodHandler right)
     {
         return Equals(left, right);
     }
 
-    public static bool operator !=(MethodHandler? left, MethodHandler? right)
+    public static bool operator !=(MethodHandler left, MethodHandler right)
     {
         return !Equals(left, right);
     }

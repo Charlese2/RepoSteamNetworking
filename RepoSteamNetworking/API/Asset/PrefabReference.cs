@@ -21,7 +21,7 @@ public struct PrefabReference
     public string assetPath;
 
     [NonSerialized]
-    private List<Action<GameObject>>? _modifyPrefabActions = [];
+    private List<Action<GameObject>> _modifyPrefabActions = [];
     public BasePrefabModification[] Modifications = [];
     
     public bool HasModifications => _modifyPrefabActions?.Count > 0 || Modifications.Length > 0;
@@ -43,12 +43,12 @@ public struct PrefabReference
 
     public AssetBundleReference BundleReference => (modNamespace, bundleName);
 
-    public T? LoadAsset<T>()
+    public T LoadAsset<T>()
         where T : Object
     {
         throw new NotImplementedException();
     }
-    public AssetBundleRequest? LoadAssetAsync<T>()
+    public AssetBundleRequest LoadAssetAsync<T>()
         where T : Object
     {
         throw new NotImplementedException();

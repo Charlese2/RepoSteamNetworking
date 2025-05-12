@@ -19,7 +19,9 @@ internal static class SteamIdUtils
         
         var lobby = RepoSteamNetwork.GetCurrentLobby();
 
-        if (!lobby.Members.Any(friend => friend.Id == steamId))
+        var lobbyMembers = (IEnumerable<Friend>)lobby.Members;
+
+        if (!lobbyMembers.Any(friend => friend.Id == steamId))
         {
             Logging.Warn($"Requesting name from non lobby member {steamId}");
             return "No Member for steamId";
@@ -33,11 +35,10 @@ internal static class SteamIdUtils
         }
 
         // Use NameHistory so we don't accidentally dox people who use nicknames to refer to their friends real names.
-        var names = lobby.Members.Where(friend => friend.Id == steamId)
-            .SelectMany(friend => friend.NameHistory)
-            .ToArray();
+        var names = lobbyMembers.Where(friend => friend.Id == steamId)
+            .Single().NameHistory as IEnumerable<string>;
 
-        if (names.Length <= 0)
+        if (names.Count() <= 0)
             return $"SteamId: {steamId.Value}";
         
         var name = names.First();
@@ -51,6 +52,7 @@ internal static class SteamIdUtils
 
     internal static void OnPersonaStateChange(Friend friend)
     {
-        CachedSteamIds[friend.Id] = friend.NameHistory.First();
+        var nameHistory = (IEnumerable<string>)friend.NameHistory;
+        CachedSteamIds[friend.Id] = nameHistory.First();
     }
 }

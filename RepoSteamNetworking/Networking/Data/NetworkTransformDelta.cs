@@ -25,7 +25,7 @@ public struct NetworkTransformDelta : IEquatable<NetworkTransformDelta>
                Nullable.Equals(ScaleZ, other.ScaleZ);
     }
 
-    public override bool Equals(object? obj)
+    public override bool Equals(object obj)
     {
         return obj is NetworkTransformDelta other && Equals(other);
     }

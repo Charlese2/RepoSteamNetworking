@@ -10,7 +10,7 @@ namespace RepoSteamNetworking.Prefab.Modifications;
 public class ComponentAddedModification : BasePrefabModification
 {
     public string ComponentPath;
-    public Dictionary<string, object?> Values;
+    public Dictionary<string, object> Values;
     
     public string FullTypeName => ComponentPath.Split(':').Last().Split('-').First();
     public string PrefabPath => ComponentPath.Split(':').First();
@@ -18,10 +18,10 @@ public class ComponentAddedModification : BasePrefabModification
     public ComponentAddedModification()
     {
         ComponentPath = string.Empty;
-        Values = new Dictionary<string, object?>();
+        Values = new Dictionary<string, object>();
     }
 
-    public ComponentAddedModification(string componentPath, Dictionary<string, object?> values)
+    public ComponentAddedModification(string componentPath, Dictionary<string, object> values)
     {
         ComponentPath = componentPath;
         Values = values;

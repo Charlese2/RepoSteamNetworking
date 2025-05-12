@@ -8,8 +8,8 @@ namespace RepoSteamNetworking.Networking.Unity;
 
 internal class ClientAuthHandshakeOneShot : MonoBehaviour
 {
-    private string? _clientKey;
-    private IEnumerator? _coroutine;
+    private string _clientKey;
+    private IEnumerator _coroutine;
 
     private void Start()
     {
@@ -17,10 +17,10 @@ internal class ClientAuthHandshakeOneShot : MonoBehaviour
         if (_coroutine is null)
             return;
         
-        StartCoroutine(_coroutine);
+        StartCoroutine((Il2CppSystem.Collections.IEnumerator)_coroutine);
     }
 
-    private IEnumerator? SendAuthHandshake()
+    private IEnumerator SendAuthHandshake()
     {
         if (string.IsNullOrEmpty(_clientKey))
         {

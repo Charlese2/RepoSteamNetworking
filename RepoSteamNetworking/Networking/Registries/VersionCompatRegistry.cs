@@ -26,7 +26,7 @@ internal static class VersionCompatRegistry
         ModVersion[modGuid] = modVersion;
     }
 
-    public static bool IsCompatible(string modGuid, SemanticVersioning.Version otherModVersion, out SemanticVersioning.Version? serverModVersion, out VersionCompatibility serverCompatibility)
+    public static bool IsCompatible(string modGuid, SemanticVersioning.Version otherModVersion, out SemanticVersioning.Version serverModVersion, out VersionCompatibility serverCompatibility)
     {
         serverModVersion = null;
         serverCompatibility = default;

@@ -3,11 +3,11 @@ using RepoSteamNetworking.API.Unity;
 using RepoSteamNetworking.Networking.Data;
 using RepoSteamNetworking.Utils.Tween;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI.CoroutineTween;
 
 namespace RepoSteamNetworking.Networking.Unity;
 
-[DisallowMultipleComponent]
 public partial class NetworkTransform : MonoBehaviour
 {
     [NetworkedProperty(CallbackMethodName = nameof(OnReceivedDelta))]
@@ -168,7 +168,7 @@ public partial class NetworkTransform : MonoBehaviour
                 StartValue = transform.position,
                 TargetValue = position
             };
-            posTween.AddOnChangedCallback(TweenCallbackPosition);
+            posTween.AddOnChangedCallback((UnityAction<Vector3>)TweenCallbackPosition);
             
             _positionTweenRunner.StopTween();
             _positionTweenRunner.StartTween(posTween);
@@ -183,7 +183,7 @@ public partial class NetworkTransform : MonoBehaviour
                 StartValue = transform.eulerAngles,
                 TargetValue = rotation
             };
-            rotTween.AddOnChangedCallback(TweenCallbackRotation);
+            rotTween.AddOnChangedCallback((UnityAction<Vector3>)TweenCallbackRotation);
             
             _rotationTweenRunner.StopTween();
             _rotationTweenRunner.StartTween(rotTween);
@@ -198,7 +198,7 @@ public partial class NetworkTransform : MonoBehaviour
                 StartValue = transform.localScale,
                 TargetValue = scale
             };
-            scaleTween.AddOnChangedCallback(TweenCallbackScale);
+            scaleTween.AddOnChangedCallback((UnityAction<Vector3>)TweenCallbackScale);
             
             _scaleTweenRunner.StopTween();
             _scaleTweenRunner.StartTween(scaleTween);

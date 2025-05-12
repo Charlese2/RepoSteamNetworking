@@ -15,7 +15,7 @@ internal class RPCMethodHelper
         methodInfo?.Invoke(target, parameters);
     }
 
-    private MethodInfo? GetMethodInfo(object target, string methodName, object[] parameters)
+    private MethodInfo GetMethodInfo(object target, string methodName, object[] parameters)
     {
         var targetHashcode = GetHashcodeFromTarget(target);
         if (!_methodInfoCache.TryGetValue(targetHashcode, out var cache))
