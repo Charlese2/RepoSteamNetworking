@@ -1,0 +1,18 @@
+﻿<Project>
+	<!-- Local Variables -->
+	<PropertyGroup>
+		<GameDirectory>C:\Program Files (x86)\Steam\steamapps\common\Wild Skies\</GameDirectory>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<InteropDirectory>$(GameDirectory)BepInEx\interop\</InteropDirectory>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<DummyDlls></DummyDlls>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<OdinSerilizerDirectory></OdinSerilizerDirectory>
+	</PropertyGroup>
+</Project>
